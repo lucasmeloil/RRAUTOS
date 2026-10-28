@@ -104,7 +104,8 @@ export default function AdminVehicles() {
 
       let vehicleId = editingId
       if (editingId) {
-        await updateVehicle(editingId, vehicleData)
+        const updated = await updateVehicle(editingId, vehicleData)
+        if (updated?.id) vehicleId = updated.id
       } else {
         const created = await createVehicle(vehicleData)
         vehicleId = created.id
@@ -261,7 +262,7 @@ export default function AdminVehicles() {
                     </td>
                     <td style={{ whiteSpace: 'nowrap' }}>{v.ano}</td>
                     <td style={{ whiteSpace: 'nowrap' }}>{formatKm(v.km)}</td>
-                    <td style={{ color: '#4D8FFF', fontWeight: 700, whiteSpace: 'nowrap' }}>{formatPrice(v.preco)}</td>
+                    <td style={{ color: '#7AA0FF', fontWeight: 700, whiteSpace: 'nowrap' }}>{formatPrice(v.preco)}</td>
                     <td style={{ textAlign: 'center', whiteSpace: 'nowrap' }}>
                       <span className={getStatusBadge(v.status)}>{v.status}</span>
                     </td>

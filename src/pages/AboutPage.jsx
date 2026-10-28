@@ -5,19 +5,26 @@ import {
   Sparkles, ShieldCheck, Award, Trophy, Target,
   Compass, HeartHandshake, Car, CheckCircle2,
   FileCheck, Flame, ArrowRight, MessageCircle, Star,
-  Smartphone, Video, CreditCard, Truck
+  Smartphone, Video, CreditCard, Truck, MapPin,
+  Store, PhoneCall, ExternalLink
 } from 'lucide-react'
 import Layout from '../components/layout/Layout'
-import { getWhatsAppLink } from '../utils/formatters'
+import fachadaLojaImg from '../assets/fachada-loja.png'
+import {
+  getWhatsAppLink,
+  STORE_FULL_ADDRESS,
+  PHONE_DISPLAY,
+  GOOGLE_MAPS_LINK
+} from '../utils/formatters'
 
 export default function AboutPage() {
   return (
     <Layout>
       <Helmet>
-        <title>Quem Somos - RR Autos | Loja de Seminovos 100% Online em Sergipe</title>
+        <title>Quem Somos - RR Autos | Loja Física e Seminovos Online em Itabaiana/SE</title>
         <meta
           name="description"
-          content="Conheça a RR Autos: compra e venda de veículos seminovos 100% online em Itabaiana e todo Sergipe. Procedência atestada, laudo cautelar e entrega na sua porta."
+          content="Conheça a RR Autos: showroom físico moderno na Av. Manoel Francisco Téles, 236 em Itabaiana/SE e compra de seminovos online com entrega garantida para todo o Sergipe."
         />
       </Helmet>
 
@@ -27,7 +34,7 @@ export default function AboutPage() {
           <div className="page-hero-badge">
             <span className="page-hero-badge-dot" />
             <Sparkles size={14} style={{ color: '#38BDF8' }} />
-            <span>Nossa Trajetória & Excelência</span>
+            <span>Nossa Trajetória & Estrutura</span>
           </div>
 
           <h1 className="page-hero-title">
@@ -35,40 +42,40 @@ export default function AboutPage() {
           </h1>
 
           <p className="page-hero-desc">
-            Mais de uma década conectando pessoas aos melhores seminovos de Itabaiana e Sergipe, com rigor técnico, procedência e garantia total.
+            Showroom físico moderno em Itabaiana e atendimento 100% online com entrega garantida para todo o estado de Sergipe.
           </p>
         </div>
       </div>
 
-      {/* ─── Nossa História & Modelo 100% Online ─────────────────────────── */}
+      {/* ─── Nossa História & Estrutura Híbrida (Física + Online) ─────────── */}
       <section className="section" style={{ background: 'var(--white)', padding: 'clamp(48px, 6vw, 84px) 0' }}>
         <div className="container">
           <div className="about-story-grid">
             <div className="about-story-content">
               <span className="badge badge-accent" style={{ marginBottom: 12, display: 'inline-flex' }}>
-                Atendimento 100% Online em Sergipe
+                Showroom Físico & Atendimento Online
               </span>
-              <h2>Uma Nova Forma de Comprar Seminovos: Segura, Ágil e 100% Digital</h2>
+              <h2>A Solidez da Loja Física com a Agilidade do Atendimento Digital</h2>
               <div className="about-divider" />
 
               <p className="about-story-lead">
-                A RR Autos nasceu para revolucionar a forma como você adquire seu próximo veículo, combinando tecnologia de ponta, consultoria humanizada e comodidade absoluta.
+                A RR Autos une a credibilidade do showroom presencial com a comodidade da plataforma online, proporcionando uma experiência de compra transparente e sem complicações.
               </p>
 
               <p className="about-story-text">
-                Operamos com um modelo <strong>100% online</strong> sediado em Itabaiana/SE, permitindo que você escolha, negocie, simule financiamento e aprove seu cadastro sem sair de casa. Cada veículo do nosso estoque passa por uma rigorosa avaliação mecânica e perícia cautelar completa, garantindo procedência 100% atestada com entrega direta para você.
+                Contamos com sede própria e moderna na <strong>Av. Manoel Francisco Téles, 236</strong> em Itabaiana/SE, onde você pode conferir nossos veículos de perto, fazer um test drive e tomar um café com nossa equipe de consultores. E para quem busca a praticidade de comprar sem sair de casa, oferecemos consultoria online completa via WhatsApp no <strong>{PHONE_DISPLAY}</strong>, com tour em vídeo, laudo cautelar 100% aprovado, simulação de financiamento com os principais bancos e entrega na sua porta.
               </p>
 
               {/* Stats Cards Grid */}
               <div className="about-stats-grid">
                 {[
-                  { val: '+10', label: 'Anos de Mercado', icon: Trophy },
-                  { val: '100%', label: 'Online & Seguro', icon: Sparkles },
+                  { val: '+10', label: 'Anos no Mercado', icon: Trophy },
+                  { val: 'Física & Online', label: 'Showroom & Delivery', icon: Store },
                   { val: '+500', label: 'Carros Entregues', icon: Car },
                   { val: '5.0★', label: 'Avaliação dos Clientes', icon: Award },
                 ].map(({ val, label, icon: Icon }) => (
                   <div key={label} className="about-stat-card">
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0A4ABF', marginBottom: 6 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', marginBottom: 6 }}>
                       <Icon size={18} />
                     </div>
                     <div className="about-stat-value">{val}</div>
@@ -78,22 +85,116 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Story Image with Floating Badge */}
+            {/* Imagem Real da Fachada Limpa */}
             <div className="about-image-box">
               <img
-                src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1000&q=85"
-                alt="Entrega e compra online RR Autos"
+                src={fachadaLojaImg}
+                alt="Fachada da loja física e showroom RR Autos - Av. Manoel Francisco Téles, 236, Itabaiana/SE"
                 className="about-image-main"
                 loading="eager"
               />
-              <div className="about-image-badge">
-                <div className="about-image-badge-icon">
-                  <ShieldCheck size={22} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Seção Especial: Presencial ou Online? Você Escolhe! ─────────── */}
+      <section className="section" style={{ background: 'var(--bg)', padding: 'clamp(48px, 6vw, 84px) 0' }}>
+        <div className="container">
+          <div className="section-header">
+            <span className="badge badge-primary" style={{ marginBottom: 10, display: 'inline-flex' }}>
+              Duas Formas de Conquistar Seu Carro
+            </span>
+            <h2 className="section-title">Presencial ou Online: Você Decide Como Comprar</h2>
+            <p className="section-subtitle">A mesma segurança, garantia cautelar e compromisso em qualquer canal que preferir</p>
+          </div>
+
+          <div className="about-hybrid-grid">
+            {/* Card 1: Loja Física */}
+            <div className="about-hybrid-card featured">
+              <div className="about-hybrid-header">
+                <div className="about-hybrid-icon" style={{ background: 'rgba(18, 84, 216, 0.12)', color: 'var(--primary)' }}>
+                  <Store size={26} />
                 </div>
                 <div>
-                  <div className="about-image-badge-title">Laudo Cautelar 100% Aprovado</div>
-                  <div className="about-image-badge-subtitle">Carros inspecionados com entrega direta</div>
+                  <h3 className="about-hybrid-title">Showroom Presencial</h3>
+                  <div className="about-hybrid-subtitle">Av. Manoel Francisco Téles, 236 • Itabaiana/SE</div>
                 </div>
+              </div>
+
+              <div className="about-hybrid-list">
+                <div className="about-hybrid-item">
+                  <CheckCircle2 size={18} />
+                  <span>Espaço moderno, iluminado e climatizado no coração de Itabaiana.</span>
+                </div>
+                <div className="about-hybrid-item">
+                  <CheckCircle2 size={18} />
+                  <span>Estoque à pronta entrega disponível para test drive imediato.</span>
+                </div>
+                <div className="about-hybrid-item">
+                  <CheckCircle2 size={18} />
+                  <span>Avaliação presencial rápida e justa do seu carro usado na troca.</span>
+                </div>
+                <div className="about-hybrid-item">
+                  <CheckCircle2 size={18} />
+                  <span>Atendimento consultivo, transparente e cafezinho especial para você.</span>
+                </div>
+              </div>
+
+              <div className="about-hybrid-footer">
+                <a
+                  href={GOOGLE_MAPS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  <MapPin size={16} /> Ver Rota no Google Maps <ExternalLink size={14} />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 2: Atendimento 100% Online */}
+            <div className="about-hybrid-card">
+              <div className="about-hybrid-header">
+                <div className="about-hybrid-icon" style={{ background: 'rgba(16, 185, 129, 0.12)', color: '#059669' }}>
+                  <Smartphone size={26} />
+                </div>
+                <div>
+                  <h3 className="about-hybrid-title">Compra & Entrega Online</h3>
+                  <div className="about-hybrid-subtitle" style={{ color: '#059669' }}>Atendimento para todo o estado de Sergipe</div>
+                </div>
+              </div>
+
+              <div className="about-hybrid-list">
+                <div className="about-hybrid-item">
+                  <CheckCircle2 size={18} />
+                  <span>Vídeo tour gravado em alta definição para você ver cada detalhe do carro.</span>
+                </div>
+                <div className="about-hybrid-item">
+                  <CheckCircle2 size={18} />
+                  <span>Envio completo do laudo pericial cautelar aprovado pelo WhatsApp.</span>
+                </div>
+                <div className="about-hybrid-item">
+                  <CheckCircle2 size={18} />
+                  <span>Aprovação de financiamento bancário 100% remota com as menores taxas.</span>
+                </div>
+                <div className="about-hybrid-item">
+                  <CheckCircle2 size={18} />
+                  <span>Entrega segura em domicílio com garantia e documentação pronta.</span>
+                </div>
+              </div>
+
+              <div className="about-hybrid-footer">
+                <a
+                  href={getWhatsAppLink(`Olá, vi o site da RR Autos e gostaria de falar com um consultor online!`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-whatsapp"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  <MessageCircle size={16} /> Falar no WhatsApp
+                </a>
               </div>
             </div>
           </div>
@@ -166,8 +267,8 @@ export default function AboutPage() {
             {[
               {
                 icon: Compass,
-                color: '#0A4ABF',
-                bgGradient: 'linear-gradient(135deg, rgba(10,74,191,0.18), rgba(0,45,122,0.08))',
+                color: '#4A7DFF',
+                bgGradient: 'linear-gradient(135deg, rgba(30,94,255,0.18), rgba(46,45,55,0.08))',
                 title: 'Missão',
                 text: 'Proporcionar a melhor e mais segura experiência na compra de seminovos online, unindo transparência honesta, atendimento humanizado e condições justas de financiamento.',
               },
@@ -252,7 +353,7 @@ export default function AboutPage() {
               Pronto Para Conquistar Seu Novo Carro?
             </h3>
             <p className="about-cta-desc">
-              Explore nosso estoque 100% online ou fale agora com nossos consultores especialistas pelo WhatsApp para tirar dúvidas e simular seu financiamento com total comodidade.
+              Venha tomar um café em nosso showroom na {STORE_FULL_ADDRESS} ou fale agora mesmo com nossa equipe pelo WhatsApp no {PHONE_DISPLAY}.
             </p>
             <div className="about-cta-actions">
               <a
@@ -261,7 +362,7 @@ export default function AboutPage() {
                 rel="noopener noreferrer"
                 className="btn btn-whatsapp btn-lg"
               >
-                <MessageCircle size={18} /> Falar no WhatsApp
+                <MessageCircle size={18} /> Chamar no WhatsApp ({PHONE_DISPLAY})
               </a>
               <Link to="/veiculos" className="btn btn-outline btn-lg" style={{ color: 'white', borderColor: 'rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)' }}>
                 Ver Todo o Estoque <ArrowRight size={18} />

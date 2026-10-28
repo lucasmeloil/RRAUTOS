@@ -265,7 +265,7 @@ export default function AdminHeroSlider() {
             <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1.8rem', fontWeight: 800, color: 'white', margin: 0 }}>
               Slider Principal (Hero)
             </h1>
-            <span style={{ background: 'rgba(77,143,255,0.15)', color: '#4D8FFF', fontSize: '0.75rem', fontWeight: 700, padding: '3px 10px', borderRadius: 999 }}>
+            <span style={{ background: 'rgba(77,143,255,0.15)', color: '#7AA0FF', fontSize: '0.75rem', fontWeight: 700, padding: '3px 10px', borderRadius: 999 }}>
               {activeCount} {activeCount === 1 ? 'ativo' : 'ativos'}
             </span>
           </div>
@@ -286,7 +286,7 @@ export default function AdminHeroSlider() {
 
       {/* Database sync status pill banner */}
       <div style={{
-        background: 'linear-gradient(135deg, rgba(10,74,191,0.18), rgba(0,45,122,0.12))',
+        background: 'linear-gradient(135deg, rgba(30,94,255,0.18), rgba(46,45,55,0.12))',
         border: '1px solid rgba(77,143,255,0.25)',
         borderRadius: 'var(--radius-md)',
         padding: '12px 18px',
@@ -300,7 +300,7 @@ export default function AdminHeroSlider() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.85rem', color: 'rgba(255,255,255,0.85)' }}>
           <span style={{ fontSize: '1.1rem' }}>💾</span>
           <div>
-            <strong style={{ color: '#4D8FFF' }}>Persistência em Banco de Dados:</strong>{' '}
+            <strong style={{ color: '#7AA0FF' }}>Persistência em Banco de Dados:</strong>{' '}
             As fotos e textos são gravados na tabela <code style={{ background: 'rgba(0,0,0,0.3)', padding: '2px 6px', borderRadius: 4, color: '#93C5FD' }}>hero_slides</code> do Supabase e refletidos em tempo real na página inicial.
           </div>
         </div>
@@ -455,7 +455,7 @@ export default function AdminHeroSlider() {
 
                       {/* Preço & Especificações */}
                       <td>
-                        <div style={{ color: '#4D8FFF', fontWeight: 800, fontSize: '0.95rem' }}>
+                        <div style={{ color: '#7AA0FF', fontWeight: 800, fontSize: '0.95rem' }}>
                           {slide.preco}
                         </div>
                         <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap' }}>

@@ -42,7 +42,13 @@ export const sanitizeInput = (input) => {
     .trim()
 }
 
-export const WHATSAPP_NUMBER = '5579999999999'
+export const PHONE_DISPLAY = '(79) 99990-1176'
+export const STORE_ADDRESS = 'Av. Manoel Francisco Téles, 236'
+export const STORE_CITY = 'Itabaiana - SE'
+export const STORE_FULL_ADDRESS = 'Av. Manoel Francisco Téles, 236 - Itabaiana, SE'
+export const GOOGLE_MAPS_LINK = 'https://www.google.com/maps/search/?api=1&query=Av.+Manoel+Francisco+T%C3%A9les%2C+236+-+Itabaiana%2C+SE'
+
+export const WHATSAPP_NUMBER = '5579999901176'
 export const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 
 export const getWhatsAppLink = (message = '') => {

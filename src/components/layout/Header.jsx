@@ -67,7 +67,7 @@ export default function Header() {
               className="header-btn-wpp"
             >
               <PhoneCall size={15} />
-              (79) 99999-9999
+              (79) 99990-1176
             </a>
             <button
               className="header-menu-btn"

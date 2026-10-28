@@ -15,7 +15,7 @@ export default function AdminDashboard() {
   }, [])
 
   const statCards = stats ? [
-    { icon: Car, label: 'Total de Veículos', value: stats.total, color: '#4D8FFF', bg: 'rgba(77,143,255,0.12)' },
+    { icon: Car, label: 'Total de Veículos', value: stats.total, color: '#7AA0FF', bg: 'rgba(77,143,255,0.12)' },
     { icon: CheckCircle, label: 'Veículos Ativos', value: stats.ativos, color: '#34D399', bg: 'rgba(52,211,153,0.12)' },
     { icon: XCircle, label: 'Veículos Vendidos', value: stats.vendidos, color: '#F87171', bg: 'rgba(248,113,113,0.12)' },
     { icon: Eye, label: 'Visualizações', value: stats.visualizacoes, color: '#A78BFA', bg: 'rgba(167,139,250,0.12)' },
@@ -57,7 +57,7 @@ export default function AdminDashboard() {
             <div style={{ background: '#111827', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 'var(--radius-lg)', padding: 24 }}>
               <h3 style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', marginBottom: 16 }}>⚡ Ações Rápidas</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                <a href="/admin/veiculos" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'rgba(10,74,191,0.15)', borderRadius: 8, color: '#4D8FFF', fontWeight: 600, fontSize: '0.88rem', border: '1px solid rgba(10,74,191,0.2)' }}>
+                <a href="/admin/veiculos" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'rgba(30,94,255,0.15)', borderRadius: 8, color: '#7AA0FF', fontWeight: 600, fontSize: '0.88rem', border: '1px solid rgba(30,94,255,0.2)' }}>
                   <Car size={16} /> Cadastrar novo veículo
                 </a>
                 <a href="/admin/leads" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'rgba(251,191,36,0.1)', borderRadius: 8, color: '#FBBF24', fontWeight: 600, fontSize: '0.88rem', border: '1px solid rgba(251,191,36,0.2)' }}>
@@ -79,7 +79,7 @@ export default function AdminDashboard() {
                   </span>
                 </div>
                 <div style={{ height: 6, background: 'rgba(255,255,255,0.1)', borderRadius: 3, overflow: 'hidden' }}>
-                  <div style={{ height: '100%', background: 'linear-gradient(90deg, #4D8FFF, #002D7A)', borderRadius: 3, width: `${stats?.total > 0 ? (stats.ativos / stats.total) * 100 : 0}%` }} />
+                  <div style={{ height: '100%', background: 'linear-gradient(90deg, #7AA0FF, #1E5EFF)', borderRadius: 3, width: `${stats?.total > 0 ? (stats.ativos / stats.total) * 100 : 0}%` }} />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: 'rgba(255,255,255,0.35)', fontSize: '0.78rem' }}>
                   <span>{stats?.ativos} ativos</span>

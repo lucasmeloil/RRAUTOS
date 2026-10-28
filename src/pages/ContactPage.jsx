@@ -7,7 +7,7 @@ import {
 } from 'lucide-react'
 import Layout from '../components/layout/Layout'
 import { createLead } from '../lib/api'
-import { getWhatsAppLink } from '../utils/formatters'
+import { getWhatsAppLink, GOOGLE_MAPS_LINK } from '../utils/formatters'
 import toast from 'react-hot-toast'
 
 export default function ContactPage() {
@@ -94,20 +94,40 @@ export default function ContactPage() {
                       <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22C55E', display: 'inline-block' }} />
                       WhatsApp Oficial (Mais Rápido)
                     </div>
-                    <div className="contact-channel-value" style={{ color: '#0F172A' }}>(79) 99999-9999</div>
+                    <div className="contact-channel-value" style={{ color: '#0F172A' }}>(79) 99990-1176</div>
                     <div style={{ fontSize: '0.78rem', color: '#15803D', marginTop: 2 }}>Resposta imediata de nossa equipe</div>
                   </div>
                   <ExternalLink size={16} className="contact-channel-arrow" style={{ color: '#16A34A' }} />
                 </a>
 
+                {/* Loja Física e Showroom */}
+                <a
+                  href={GOOGLE_MAPS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-channel-card"
+                >
+                  <div className="contact-channel-icon-box" style={{ background: 'rgba(18, 84, 216, 0.1)', color: 'var(--primary)' }}>
+                    <MapPin size={22} />
+                  </div>
+                  <div className="contact-channel-content">
+                    <div className="contact-channel-label">Loja Física & Showroom</div>
+                    <div className="contact-channel-value" style={{ fontSize: '0.92rem' }}>
+                      Av. Manoel Francisco Téles, 236
+                    </div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--gray-500)', marginTop: 2 }}>Itabaiana - SE • Venha tomar um café conosco</div>
+                  </div>
+                  <ExternalLink size={16} className="contact-channel-arrow" />
+                </a>
+
                 {/* Telefone */}
-                <a href="tel:+5579999999999" className="contact-channel-card">
-                  <div className="contact-channel-icon-box" style={{ background: 'rgba(10, 74, 191, 0.1)', color: 'var(--primary-light)' }}>
+                <a href="tel:+5579999901176" className="contact-channel-card">
+                  <div className="contact-channel-icon-box" style={{ background: 'rgba(30, 94, 255, 0.1)', color: 'var(--primary)' }}>
                     <PhoneCall size={22} />
                   </div>
                   <div className="contact-channel-content">
-                    <div className="contact-channel-label">Ligação Telefônica</div>
-                    <div className="contact-channel-value">(79) 99999-9999</div>
+                    <div className="contact-channel-label">Ligação Telefônica Direta</div>
+                    <div className="contact-channel-value">(79) 99990-1176</div>
                   </div>
                   <span className="contact-channel-arrow">→</span>
                 </a>
@@ -269,7 +289,7 @@ export default function ContactPage() {
 
               <div>
                 <a
-                  href="https://maps.google.com/?q=Itabaiana,Sergipe"
+                  href={GOOGLE_MAPS_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary"

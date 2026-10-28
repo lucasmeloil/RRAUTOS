@@ -271,7 +271,7 @@ export default function VehicleDetailPage() {
                 <MessageCircle size={17} />
                 Quero este veículo!
               </a>
-              <a href="tel:+5579999999999" className="btn btn-primary">
+              <a href="tel:+5579999901176" className="btn btn-primary">
                 <Phone size={17} />
                 Ligar agora
               </a>

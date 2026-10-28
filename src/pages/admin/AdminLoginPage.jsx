@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { Car, Lock, Eye, EyeOff } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import toast from 'react-hot-toast'
 
 export default function AdminLoginPage() {
   const { signIn, user, isAdmin, loading } = useAuth()
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPass, setShowPass] = useState(false)
@@ -26,6 +27,7 @@ export default function AdminLoginPage() {
     try {
       await signIn(email, password)
       toast.success('Login realizado com sucesso!')
+      navigate('/admin/dashboard', { replace: true })
     } catch (err) {
       toast.error(err.message || 'Email ou senha incorretos.')
     } finally {
@@ -38,7 +40,7 @@ export default function AdminLoginPage() {
       <Helmet><title>Admin Login - RR Autos</title></Helmet>
       <div style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #0A0E1A 0%, #0F172A 50%, #001A4D 100%)',
+        background: 'linear-gradient(135deg, #1A1A22 0%, #0F172A 50%, #1A1A22 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

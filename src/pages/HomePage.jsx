@@ -4,12 +4,13 @@ import { Helmet } from 'react-helmet-async'
 import {
   Search, ChevronDown, CheckCircle, Shield, Star,
   Award, Wrench, ThumbsUp, Car, ArrowRight,
-  ChevronLeft, ChevronRight, CheckCircle2
+  ChevronLeft, ChevronRight, CheckCircle2, MessageCircle
 } from 'lucide-react'
 import Layout from '../components/layout/Layout'
 import VehicleCard from '../components/vehicles/VehicleCard'
 import HeroSlider from '../components/home/HeroSlider'
 import { getFeaturedVehicles } from '../lib/api'
+import { getWhatsAppLink } from '../utils/formatters'
 
 const DIFERENCIAIS = [
   { icon: CheckCircle, title: 'Financiamento Facilitado', desc: 'Parcelas que cabem no seu bolso, aprovação rápida.' },
@@ -179,7 +180,7 @@ export default function HomePage() {
               <div className="empty-state-icon"><Car size={36} /></div>
               <h3>Estoque sendo atualizado</h3>
               <p>Novos veículos em breve. Entre em contato para saber disponibilidade.</p>
-              <a href="https://wa.me/5579999999999" target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
+              <a href={getWhatsAppLink('Olá, gostaria de saber sobre a disponibilidade de veículos na RR Autos!')} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
                 💬 Consultar via WhatsApp
               </a>
             </div>
@@ -187,16 +188,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── Depoimentos: Carrossel Automático de 1 Card Único ─────────── */}
+      {/* ─── Depoimentos: Carrossel Automático de 1 Card Único (Tema Claro) ─── */}
       <section className="section testimonials-section">
         <div className="container">
           <div className="section-header">
-            <span className="badge badge-accent" style={{ marginBottom: 10, display: 'inline-flex' }}>
+            <span className="badge badge-primary" style={{ marginBottom: 10, display: 'inline-flex' }}>
               Experiência Comprovada
             </span>
-            <h2 className="section-title" style={{ color: 'white' }}>O que nossos clientes dizem</h2>
-            <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.7)' }}>
-              Mais de 500 clientes satisfeitos em toda Sergipe com a compra 100% online
+            <h2 className="section-title">O que nossos clientes dizem</h2>
+            <p className="section-subtitle">
+              Mais de 500 clientes satisfeitos em toda Sergipe com a compra presencial e 100% online
             </p>
           </div>
 
@@ -271,28 +272,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── CTA Final ───────────────────────────────────────────────────── */}
-      <section className="section" style={{ background: 'linear-gradient(135deg, var(--primary-dark), var(--primary))', marginBottom: 0, paddingBottom: 80 }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, color: 'white', marginBottom: 12 }}>
-            Pronto para encontrar seu veículo ideal?
-          </h2>
-          <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.05rem', marginBottom: 32 }}>
-            Acesse nosso catálogo completo ou fale diretamente com nossa equipe
-          </p>
-          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/veiculos" className="btn btn-lg" style={{ background: 'white', color: 'var(--primary)' }}>
-              <Car size={18} />
-              Ver Estoque Completo
-            </Link>
-            <a
-              href="https://wa.me/5579999999999"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-whatsapp btn-lg"
-            >
-              💬 Falar no WhatsApp
-            </a>
+      {/* ─── CTA Final (Tema Claro & Sofisticado) ─────────────────────────── */}
+      <section className="section home-cta-section">
+        <div className="container">
+          <div className="home-cta-card">
+            <span className="badge badge-accent" style={{ marginBottom: 12, display: 'inline-flex' }}>
+              Atendimento Imediato & Entrega em Sergipe
+            </span>
+            <h2 className="home-cta-title">
+              Pronto para encontrar seu veículo ideal?
+            </h2>
+            <p className="home-cta-subtitle">
+              Explore nosso catálogo online com laudo cautelar aprovado ou venha tomar um café em nosso showroom físico na Av. Manoel Francisco Téles, 236 em Itabaiana.
+            </p>
+            <div className="home-cta-actions">
+              <Link to="/veiculos" className="btn btn-primary btn-lg">
+                <Car size={18} />
+                Ver Todo o Estoque
+              </Link>
+              <a
+                href={getWhatsAppLink('Olá, vim pela página inicial da RR Autos e gostaria de atendimento!')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-whatsapp btn-lg"
+              >
+                <MessageCircle size={18} /> Falar no WhatsApp
+              </a>
+            </div>
+
+            <div className="home-cta-trust-tags">
+              <span>🛡️ Procedência Garantida</span>
+              <span>📄 Laudo Cautelar 100% Aprovado</span>
+              <span>⚡ Financiamento Facilitado</span>
+              <span>🚚 Entrega na Sua Porta</span>
+            </div>
           </div>
         </div>
       </section>

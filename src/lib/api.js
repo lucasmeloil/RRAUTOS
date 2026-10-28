@@ -258,13 +258,13 @@ export const updateHeroSlide = async (id, slideData) => {
       .update(updatedData)
       .eq('id', id)
       .select()
-      .single()
 
     if (error) throw error
-    if (data) {
-      const current = getLocalHeroSlides().map(s => s.id === id ? data : s)
+    if (data && data.length > 0) {
+      const updated = data[0]
+      const current = getLocalHeroSlides().map(s => s.id === id ? updated : s)
       setLocalHeroSlides(current)
-      return data
+      return updated
     }
   } catch (err) {
     console.warn('Erro ao atualizar hero_slide no Supabase, salvando localmente:', err.message)
@@ -326,9 +326,8 @@ export const setVehicleHeroStatus = async (id, destaque_hero) => {
     .update({ destaque_hero })
     .eq('id', id)
     .select()
-    .single()
   if (error) throw error
-  return data
+  return data?.[0] || { id, destaque_hero }
 }
 
 export const getFeaturedVehicles = async () => {
@@ -417,27 +416,47 @@ export const getAllVehiclesAdmin = async (page = 1, limit = 20) => {
 }
 
 export const createVehicle = async (vehicleData) => {
+  const { imagens, ...cleanData } = vehicleData
   const { data, error } = await supabase
     .from('veiculos')
-    .insert([vehicleData])
+    .insert([cleanData])
     .select()
-    .single()
   if (error) throw error
-  return data
+  return data?.[0] || cleanData
 }
 
 export const updateVehicle = async (id, vehicleData) => {
+  const { imagens, ...cleanData } = vehicleData
+
+  // 1. Tenta atualizar pelo ID
   const { data, error } = await supabase
     .from('veiculos')
-    .update(vehicleData)
+    .update(cleanData)
     .eq('id', id)
     .select()
-    .single()
+
   if (error) throw error
-  return data
+
+  // Se o registro não existia no banco (ex: veículo inicial do mock), grava via upsert
+  if (!data || data.length === 0) {
+    const { data: upsertData, error: upsertError } = await supabase
+      .from('veiculos')
+      .upsert({ ...cleanData, id })
+      .select()
+
+    if (upsertError) throw upsertError
+    return upsertData?.[0] || { id, ...cleanData }
+  }
+
+  return data[0]
 }
 
 export const deleteVehicle = async (id) => {
+  try {
+    await supabase.from('imagens').delete().eq('veiculo_id', id)
+  } catch (err) {
+    console.warn('Erro ao remover imagens vinculadas:', err)
+  }
   const { error } = await supabase
     .from('veiculos')
     .delete()
@@ -522,6 +541,21 @@ export const getLeads = async (page = 1, limit = 20) => {
   } catch {
     return { data: localLeads, count: localLeads.length }
   }
+}
+
+export const updateLead = async (id, leadData) => {
+  const { data, error } = await supabase
+    .from('contatos')
+    .update(leadData)
+    .eq('id', id)
+    .select()
+  if (error) throw error
+  return data?.[0] || leadData
+}
+
+export const deleteLead = async (id) => {
+  const { error } = await supabase.from('contatos').delete().eq('id', id)
+  if (error) throw error
 }
 
 // ─── Dashboard Stats ─────────────────────────────────────────────────────────

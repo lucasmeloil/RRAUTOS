@@ -232,14 +232,50 @@ export default function CatalogPage() {
       {/* ─── Header do Catálogo ─────────────────────────────────────────── */}
       <div className="catalog-header">
         <div className="container">
+          <div className="catalog-header-badge">
+            <Sparkles size={13} />
+            Seminovos Selecionados & Revisados
+          </div>
           <h1>Catálogo de Veículos</h1>
-          <p>{total > 0 ? `${total} veículos disponíveis com laudo e procedência` : 'Explore nosso estoque 100% online'}</p>
+          <p>{total > 0 ? `${total} veículos disponíveis com laudo cautelar aprovado e garantia` : 'Explore nosso estoque 100% online em Sergipe'}</p>
         </div>
       </div>
 
-      {/* ─── Carrossel Rápido de Marcas e Filtros no Topo ─────────────────── */}
+      {/* ─── Barra Sticky Estilo App Mobile (Busca + Filtros + Chips Rápidos) ─── */}
       <div className="catalog-pills-wrap">
         <div className="container">
+          {/* Controles de Busca e Filtro específicos para Mobile */}
+          <div className="catalog-mobile-controls">
+            <form onSubmit={handleSearchSubmit} className="catalog-mobile-search-form">
+              <Search size={17} className="catalog-mobile-search-icon" />
+              <input
+                type="text"
+                placeholder="Buscar modelo, versão ou marca..."
+                value={buscaInput}
+                onChange={e => setBuscaInput(e.target.value)}
+                className="catalog-mobile-search-input"
+              />
+              {buscaInput && (
+                <button type="button" onClick={clearSearch} className="catalog-mobile-search-clear" aria-label="Limpar busca">
+                  <X size={14} />
+                </button>
+              )}
+            </form>
+            <button
+              type="button"
+              className={`catalog-mobile-filter-trigger${hasFilters ? ' has-filters' : ''}`}
+              onClick={() => setMobileFilterOpen(true)}
+              aria-label="Abrir filtros avançados"
+            >
+              <SlidersHorizontal size={17} />
+              <span className="trigger-label">Filtros</span>
+              {activeFilters.length > 0 && (
+                <span className="trigger-badge">{activeFilters.length}</span>
+              )}
+            </button>
+          </div>
+
+          {/* Carrossel de Chips Horizontais Touch-Friendly */}
           <div className="catalog-pills-scroll">
             <button
               type="button"
@@ -270,21 +306,29 @@ export default function CatalogPage() {
 
             <button
               type="button"
-              className={`catalog-pill-btn${filters.preco_max === '100000' && !filters.preco_min ? ' active' : ''}`}
-              onClick={() => handlePricePreset('', '100000')}
+              className={`catalog-pill-btn${filters.preco_max === '80000' && !filters.preco_min ? ' active' : ''}`}
+              onClick={() => handlePricePreset('', '80000')}
             >
-              💰 Até R$ 100k
+              💰 Até R$ 80k
+            </button>
+
+            <button
+              type="button"
+              className={`catalog-pill-btn${filters.preco_max === '130000' && !filters.preco_min ? ' active' : ''}`}
+              onClick={() => handlePricePreset('', '130000')}
+            >
+              💰 Até R$ 130k
             </button>
           </div>
         </div>
       </div>
 
       <div className="container catalog-layout">
-        {/* ─── Painel Desktop de Filtros (Sticky) ─────────────────────────── */}
+        {/* ─── Painel Desktop de Filtros (Sticky Lateral) ─────────────────── */}
         <aside className="filter-panel">
           <div className="filter-panel-header">
             <h3 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <SlidersHorizontal size={18} style={{ color: 'var(--primary-light)' }} />
+              <SlidersHorizontal size={18} style={{ color: 'var(--primary)' }} />
               Filtros Avançados
             </h3>
             {hasFilters && (
@@ -315,41 +359,6 @@ export default function CatalogPage() {
 
         {/* ─── Conteúdo Principal do Catálogo ─────────────────────────────── */}
         <div className="catalog-main">
-          {/* Barra de Pesquisa Rápida Mobile */}
-          <form onSubmit={handleSearchSubmit} className="catalog-search-wrap">
-            <Search size={18} className="catalog-search-icon" />
-            <input
-              type="text"
-              placeholder="Qual carro você procura? Ex: Civic, Corolla, Compass..."
-              value={buscaInput}
-              onChange={e => setBuscaInput(e.target.value)}
-              className="catalog-search-input"
-            />
-            {buscaInput && (
-              <button type="button" onClick={clearSearch} className="catalog-search-clear" aria-label="Limpar busca">
-                <X size={14} />
-              </button>
-            )}
-          </form>
-
-          {/* Botão de Filtros Mobile */}
-          <button
-            type="button"
-            className="filter-mobile-toggle"
-            onClick={() => setMobileFilterOpen(true)}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <Filter size={18} style={{ color: 'var(--primary)' }} />
-              Filtrar Veículos
-              {activeFilters.length > 0 && (
-                <span className="badge badge-primary" style={{ fontSize: '0.72rem', padding: '3px 8px' }}>
-                  {activeFilters.length} ativo{activeFilters.length > 1 ? 's' : ''}
-                </span>
-              )}
-            </span>
-            <ChevronDown size={18} />
-          </button>
-
           {/* Chips de Filtros Ativos (com remoção individual rápida) */}
           {hasFilters && (
             <div className="catalog-active-chips">
@@ -357,7 +366,7 @@ export default function CatalogPage() {
               {filters.busca && (
                 <span className="catalog-active-chip">
                   Busca: "{filters.busca}"
-                  <button type="button" onClick={clearSearch} className="catalog-active-chip-remove">
+                  <button type="button" onClick={clearSearch} className="catalog-active-chip-remove" aria-label="Remover busca">
                     <X size={13} />
                   </button>
                 </span>
@@ -365,7 +374,7 @@ export default function CatalogPage() {
               {filters.marca && (
                 <span className="catalog-active-chip">
                   {filters.marca}
-                  <button type="button" onClick={() => setFilter('marca', filters.marca)} className="catalog-active-chip-remove">
+                  <button type="button" onClick={() => setFilter('marca', filters.marca)} className="catalog-active-chip-remove" aria-label="Remover marca">
                     <X size={13} />
                   </button>
                 </span>
@@ -373,7 +382,7 @@ export default function CatalogPage() {
               {filters.cambio && (
                 <span className="catalog-active-chip">
                   {filters.cambio}
-                  <button type="button" onClick={() => setFilter('cambio', filters.cambio)} className="catalog-active-chip-remove">
+                  <button type="button" onClick={() => setFilter('cambio', filters.cambio)} className="catalog-active-chip-remove" aria-label="Remover câmbio">
                     <X size={13} />
                   </button>
                 </span>
@@ -381,7 +390,7 @@ export default function CatalogPage() {
               {filters.combustivel && (
                 <span className="catalog-active-chip">
                   {filters.combustivel}
-                  <button type="button" onClick={() => setFilter('combustivel', filters.combustivel)} className="catalog-active-chip-remove">
+                  <button type="button" onClick={() => setFilter('combustivel', filters.combustivel)} className="catalog-active-chip-remove" aria-label="Remover combustível">
                     <X size={13} />
                   </button>
                 </span>
@@ -389,7 +398,7 @@ export default function CatalogPage() {
               {filters.ano && (
                 <span className="catalog-active-chip">
                   Ano: {filters.ano}
-                  <button type="button" onClick={() => setFilter('ano', filters.ano)} className="catalog-active-chip-remove">
+                  <button type="button" onClick={() => setFilter('ano', filters.ano)} className="catalog-active-chip-remove" aria-label="Remover ano">
                     <X size={13} />
                   </button>
                 </span>
@@ -401,7 +410,7 @@ export default function CatalogPage() {
                     : filters.preco_max
                     ? `Até R$ ${filters.preco_max}`
                     : `A partir de R$ ${filters.preco_min}`}
-                  <button type="button" onClick={() => setFilters(f => ({ ...f, preco_min: '', preco_max: '' }))} className="catalog-active-chip-remove">
+                  <button type="button" onClick={() => setFilters(f => ({ ...f, preco_min: '', preco_max: '' }))} className="catalog-active-chip-remove" aria-label="Remover faixa de preço">
                     <X size={13} />
                   </button>
                 </span>

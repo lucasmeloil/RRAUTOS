@@ -76,7 +76,7 @@ export default function AdminLeads() {
                     <td style={{ color: 'rgba(255,255,255,0.55)' }}>{l.email || '-'}</td>
                     <td>
                       {l.veiculos ? (
-                        <span style={{ color: '#4D8FFF', fontSize: '0.82rem', fontWeight: 600 }}>
+                        <span style={{ color: '#7AA0FF', fontSize: '0.82rem', fontWeight: 600 }}>
                           {l.veiculos.marca} {l.veiculos.modelo} {l.veiculos.ano}
                         </span>
                       ) : '-'}
